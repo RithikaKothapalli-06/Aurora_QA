@@ -1,5 +1,5 @@
 import chromadb
-from chromadb.utils import embedding_functions
+from chromadb.utils.embedding_functions import DefaultEmbeddingFunction
 
 # ---------------------------------------------------------
 # INIT VECTOR STORE
@@ -8,17 +8,21 @@ from chromadb.utils import embedding_functions
 def init_vector_store(messages):
     client = chromadb.Client()
 
+    # Use Chroma's built-in lightweight embedding model
+    embedding_fn = DefaultEmbeddingFunction()
+
+    # Create collection
     collection = client.create_collection(
         name="aurora_messages",
         metadata={"hnsw:space": "cosine"},
-        embedding_function=embedding_functions.SentenceTransformerEmbeddingFunction(
-            model_name="all-MiniLM-L6-v2"
-        )
+        embedding_function=embedding_fn
     )
 
+    # Prepare the documents
     docs = [m["text"] for m in messages]
     ids = [str(m["id"]) for m in messages]
 
+    # Add to vector store
     collection.add(
         ids=ids,
         documents=docs

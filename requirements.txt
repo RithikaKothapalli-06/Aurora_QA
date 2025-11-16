@@ -3,15 +3,4 @@ uvicorn==0.29.0
 gunicorn==21.2.0
 requests==2.32.3
 chromadb==1.0.20
-
-# Sentence Transformers + required deps (safe for Render)
-sentence-transformers==2.2.2
-transformers==4.37.2
-tokenizers==0.15.2
-
-# Torch CPU-only for Render (small size, avoids GPU build)
-torch==2.1.2 --index-url https://download.pytorch.org/whl/cpu
-
 numpy==1.26.4
-
-
