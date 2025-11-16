@@ -1,0 +1,6 @@
+fastapi==0.110.0
+uvicorn==0.29.0
+requests==2.32.3
+chromadb==1.0.20
+sentence-transformers==3.0.1
+gunicorn==21.2.0
